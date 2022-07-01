@@ -4,6 +4,8 @@ const Button = (props) => {
   return <button onClick={props.action}>{props.text}</button>
 }
 
+const StatisticsLine = ({text, value}) => <p>{text} {value}</p>
+
 const Statistics = ({ good, neutral, bad, all, avg, pos }) => {
 
   if (good === 0 && neutral === 0 && bad === 0) {
@@ -22,12 +24,12 @@ const Statistics = ({ good, neutral, bad, all, avg, pos }) => {
 
         <h1>Statistics</h1>
 
-        <p>good {good}</p>
-        <p>neutral {neutral}</p>
-        <p>bad {bad}</p>
-        <p>all {all}</p>
-        <p>average {avg}</p>
-        <p>positive {pos * 100}%</p>
+        <StatisticsLine text='good' value={good} />
+        <StatisticsLine text='neutral' value={neutral} />
+        <StatisticsLine text='bad' value={bad} />
+        <StatisticsLine text='all' value={all} />
+        <StatisticsLine text='average' value={avg} />
+        <StatisticsLine text='positive' value={pos * 100} />
 
       </div>
 
