@@ -58,7 +58,7 @@ const App = () => {
   const [all, setAll] = useState(0)
 
   const [anecIndex, setAnecdote] = useState(0)
-
+  
   const anecdotes = [
     'If it hurts, do it more often.',
     'Adding manpower to a late software project makes it later!',
@@ -68,7 +68,9 @@ const App = () => {
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.'
   ]
-
+  
+  const [anecPoints, setAnecpoint] = useState(new Array(anecdotes.length).fill(0));
+  
   const handleGoodClick = () => {
 
     const newGood = good + 1;
@@ -99,6 +101,12 @@ const App = () => {
     setAvg((good - newBad) / (good + neutral + newBad));
   }
 
+  const voteAnecdote = () => {
+    var copy = [...anecPoints]
+    copy[anecIndex] += 1
+    setAnecpoint(copy)
+  }
+
   return (
     <div>
       <h1>Give feedback</h1>
@@ -111,7 +119,9 @@ const App = () => {
 
       <h1>Anecdotes</h1>
       <p>{anecdotes[anecIndex]}</p>
+      <p>This anecdote's score: {anecPoints[anecIndex]}</p>
       <Button text='Next anecdote' action={() => setAnecdote(Math.floor(Math.random() * anecdotes.length))}></Button>
+      <Button text='Vote up' action={voteAnecdote} />
 
     </div>
   )
